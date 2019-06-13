@@ -2,6 +2,7 @@ const { AuthorModel } = require('../models/author_model');
 const { BookModel } = require('../models/book_model');
 
 async function create(req, res) {
+    console.log(req.files.image);
     //logic for creating a resource
     let { name, bio, gender } = req.body;
     let author = await AuthorModel.create({ name, bio, gender }).catch(err =>

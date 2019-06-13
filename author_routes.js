@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 const AuthorController = require('./controllers/author_controller');
+
+const upload = multuer({ dest: 'public/images' });
 
 router.delete('/:id', AuthorController.destroy);
 
