@@ -2,11 +2,11 @@ const { AuthorModel } = require('../models/author_model');
 const { BookModel } = require('../models/book_model');
 
 async function create(req, res) {
-    console.log(req.files.image);
+    const image = req.file.path.replace('public', '');
     //logic for creating a resource
     let { name, bio, gender } = req.body;
-    let author = await AuthorModel.create({ name, bio, gender }).catch(err =>
-        res.status(500).send(err)
+    let author = await AuthorModel.create({ name, bio, gender, image }).catch(
+        err => res.status(500).send(err)
     );
 
     res.redirect('/authors');
