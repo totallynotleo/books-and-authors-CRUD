@@ -1,0 +1,13 @@
+<h1><%= author.name %></h1>
+<h3><%= author.gender %></h3>
+<p><%= author.bio %></p>
+<hr>
+
+<h2> Books </h2>
+<ul>
+    <% for (book of books) { %>
+        <li> <a href="/books/<%= book._id %>" ><%= book.title %></a></li>
+    <% } %>
+</ul>
+<a href="/authors/<%= author._id %>/update" >Update Author</a> | 
+<a href="/authors">Back to Authors</a>
