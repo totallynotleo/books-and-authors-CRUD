@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const BookController = require('./controllers/book_controller');
+const BookController = require('../controllers/book_controller');
 
 router.delete('/:id', BookController.destroy);
 

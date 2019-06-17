@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const AuthorController = require('./controllers/author_controller');
+const AuthorController = require('../controllers/author_controller');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
