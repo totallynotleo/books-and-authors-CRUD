@@ -5,11 +5,25 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
+const acl = require('express-acl');
+
 const { UserModel, UserSchema } = require('./models/user_model');
 
 //Create the app
 const app = express();
 const port = 3000;
+
+acl.config({
+    filename: 'acl.yml',
+    defaultRole: 'guest',
+    denyCallback: res => {
+        res.status(403).json({
+            status: 'Verboten!',
+            success: false,
+            message: 'I wish i was dead'
+        });
+    }
+});
 
 //Authentication and Session stuff
 app.use(
@@ -17,6 +31,8 @@ app.use(
         secret: 'it would be nice to not be alive'
     })
 );
+
+app.use(acl.authorize);
 
 app.use(express.static('public'));
 

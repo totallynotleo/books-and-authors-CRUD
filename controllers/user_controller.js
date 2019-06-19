@@ -1,5 +1,12 @@
 const { UserModel } = require('../models/user_model');
 
+function index(req, res) {
+    res.render('layout', {
+        view: 'index',
+        title: "It's working"
+    });
+}
+
 // Registers a Username (email) and Password
 function registerForm(req, res) {
     res.render('layout', {
@@ -19,12 +26,13 @@ async function register(req, res) {
         // Tell passport to log in the new user
         passport.authenticate('local')(req, res, () => {
             // req.user ow exists
-            res.redirect('/authors');
         });
     });
+    res.redirect('/authors');
 }
 
 module.exports = {
     register,
-    registerForm
+    registerForm,
+    index
 };
